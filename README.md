@@ -1,5 +1,11 @@
 # Dotland Design System
 
+[![CI](https://github.com/YOUR_USERNAME/design-system/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/design-system/actions/workflows/ci.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=YOUR_PROJECT_KEY&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=YOUR_PROJECT_KEY)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=YOUR_PROJECT_KEY&metric=coverage)](https://sonarcloud.io/summary/new_code?id=YOUR_PROJECT_KEY)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=YOUR_PROJECT_KEY&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=YOUR_PROJECT_KEY)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=YOUR_PROJECT_KEY&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=YOUR_PROJECT_KEY)
+
 A Lerna monorepo containing the Dotland design system UI components.
 
 ## Project Structure
@@ -177,6 +183,67 @@ const customTheme = createTheme({
   },
 });
 ```
+
+## CI/CD and Code Quality
+
+This project uses GitHub Actions for continuous integration and SonarCloud for code quality analysis.
+
+### GitHub Actions Workflow
+
+The CI workflow runs on every push and pull request:
+
+- **Build and Test Job**:
+  - Runs on Node.js 18.x and 20.x
+  - Installs dependencies
+  - Lints code with ESLint
+  - Checks code formatting with Prettier
+  - Runs all tests
+  - Builds packages
+  - Builds Storybook
+  - Uploads build artifacts
+
+- **Code Quality Job**:
+  - Runs tests with coverage
+  - Performs SonarCloud analysis
+  - Checks quality gate status
+
+### Setting up SonarCloud
+
+To enable SonarCloud integration, you need to:
+
+1. **Create a SonarCloud account** at [sonarcloud.io](https://sonarcloud.io)
+
+2. **Import your repository** to SonarCloud
+
+3. **Add the following secrets** to your GitHub repository settings:
+   - `SONAR_TOKEN`: Your SonarCloud token
+   - `SONAR_ORGANIZATION`: Your SonarCloud organization key
+   - `SONAR_PROJECT_KEY`: Your SonarCloud project key
+
+4. **Update the README badges** with your actual project information:
+   - Replace `YOUR_USERNAME` with your GitHub username
+   - Replace `YOUR_PROJECT_KEY` with your SonarCloud project key
+
+### Running Tests with Coverage Locally
+
+```bash
+# Run tests with coverage
+npm run test -- --coverage
+
+# View coverage report
+open coverage/index.html
+```
+
+### Code Quality Metrics
+
+SonarCloud analyzes:
+- Code coverage
+- Code smells
+- Bugs and vulnerabilities
+- Security hotspots
+- Technical debt
+- Maintainability rating
+- Security rating
 
 ## License
 

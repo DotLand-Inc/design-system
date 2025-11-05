@@ -7,7 +7,7 @@ import dts from 'vite-plugin-dts';
 export default defineConfig({
   plugins: [
     react(),
-    // @ts-ignore - Vite plugin type compatibility
+    // @ts-expect-error - Vite plugin type compatibility
     dts({
       entryRoot: 'src',
       tsconfigPath: './tsconfig.app.json',

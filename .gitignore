@@ -12,3 +12,5 @@ coverage/
 .env.test.local
 .env.production.local
 storybook-static/
+.sonar/
+.scannerwork/
