@@ -85,8 +85,8 @@ jobs:
           args: >
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-            -Dsonar.sources=src
-            -Dsonar.tests=src
+            -Dsonar.sources=packages
+            -Dsonar.tests=packages
             -Dsonar.test.inclusions=**/*.spec.tsx,**/*.spec.ts,**/*.test.tsx,**/*.test.ts
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
         env:
