@@ -45,10 +45,7 @@ export const Colors: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
       <FormControlLabel control={<Checkbox defaultChecked color="primary" />} label="Primary" />
-      <FormControlLabel
-        control={<Checkbox defaultChecked color="secondary" />}
-        label="Secondary"
-      />
+      <FormControlLabel control={<Checkbox defaultChecked color="secondary" />} label="Secondary" />
       <FormControlLabel control={<Checkbox defaultChecked color="success" />} label="Success" />
       <FormControlLabel control={<Checkbox defaultChecked color="error" />} label="Error" />
     </div>

@@ -9,12 +9,14 @@ GitHub Actions CI/CD pipeline with SonarCloud integration has been successfully 
 ### 1. GitHub Actions Workflow (`.github/workflows/ci.yml`)
 
 **Triggers:**
+
 - All branches on push
 - All pull requests
 
 **Jobs:**
 
 #### Build and Test Job
+
 - **Matrix Strategy**: Tests on Node.js 18.x and 20.x
 - **Steps**:
   1. Checkout repository with full git history (required for SonarCloud)
@@ -28,6 +30,7 @@ GitHub Actions CI/CD pipeline with SonarCloud integration has been successfully 
   9. Upload build artifacts (Node 20.x only, retained for 7 days)
 
 #### Code Quality Job
+
 - **Runs After**: Build and Test job succeeds
 - **Node Version**: 20.x only
 - **Steps**:
@@ -41,45 +44,54 @@ GitHub Actions CI/CD pipeline with SonarCloud integration has been successfully 
 ### 2. SonarCloud Configuration (`sonar-project.properties`)
 
 **Project Settings:**
+
 - Project name: Dotland Design System
 - Project version: 1.0.0
 
 **Analysis Configuration:**
+
 - **Sources**: `packages/design-system/src`
 - **Tests**: `packages/design-system/src`
 - **Test Patterns**: `**/*.spec.tsx`, `**/*.spec.ts`, `**/*.test.tsx`, `**/*.test.ts`
 
 **Exclusions:**
+
 - node_modules
 - dist/build directories
 - coverage reports
-- Storybook files (*.stories.tsx, storybook-static)
-- Configuration files (*.config.ts/js/mjs)
+- Storybook files (\*.stories.tsx, storybook-static)
+- Configuration files (\*.config.ts/js/mjs)
 
 **Coverage:**
+
 - Report path: `coverage/lcov.info`
 - Excludes: Stories, tests, and config files from coverage metrics
 
 **Quality Gate:**
+
 - Enabled with automatic wait for results
 
 ### 3. Test Coverage Configuration
 
 **Updated Files:**
+
 - `packages/design-system/vitest.config.ts`
 
 **Coverage Settings:**
+
 - **Provider**: v8
 - **Reporters**: text, lcov, html
 - **Output Directory**: `../../coverage` (repository root)
 - **Exclusions**: node_modules, tests, stories, config files
 
 **Dependencies Added:**
+
 - `@vitest/coverage-v8@latest`
 
 ### 4. .gitignore Updates
 
 Added to ignore list:
+
 - `coverage/` - Coverage reports
 - `.sonar/` - SonarCloud cache
 - `.scannerwork/` - SonarCloud scanner working directory
@@ -87,6 +99,7 @@ Added to ignore list:
 ### 5. README Updates
 
 **Added:**
+
 - CI/CD status badge
 - SonarCloud quality badges:
   - Quality Gate Status
@@ -100,6 +113,7 @@ Added to ignore list:
 ### 6. Setup Documentation (`.github/SETUP_CI.md`)
 
 Comprehensive guide covering:
+
 - Prerequisites
 - Step-by-step SonarCloud setup
 - GitHub secrets configuration
@@ -112,11 +126,11 @@ Comprehensive guide covering:
 
 To enable SonarCloud integration, add these secrets to your GitHub repository:
 
-| Secret Name | Description | How to Get |
-|-------------|-------------|------------|
-| `SONAR_TOKEN` | Authentication token | SonarCloud → My Account → Security → Generate Token |
-| `SONAR_ORGANIZATION` | Organization key | SonarCloud → Organization Settings → Key |
-| `SONAR_PROJECT_KEY` | Project key | SonarCloud → Project Settings → Project Key |
+| Secret Name          | Description          | How to Get                                          |
+| -------------------- | -------------------- | --------------------------------------------------- |
+| `SONAR_TOKEN`        | Authentication token | SonarCloud → My Account → Security → Generate Token |
+| `SONAR_ORGANIZATION` | Organization key     | SonarCloud → Organization Settings → Key            |
+| `SONAR_PROJECT_KEY`  | Project key          | SonarCloud → Project Settings → Project Key         |
 
 **Note**: `GITHUB_TOKEN` is automatically provided by GitHub Actions.
 
@@ -134,12 +148,14 @@ To enable SonarCloud integration, add these secrets to your GitHub repository:
 ### 2. Update README Badges
 
 Replace placeholders in `README.md`:
+
 - `YOUR_USERNAME` → Your GitHub username/organization
 - `YOUR_PROJECT_KEY` → Your SonarCloud project key
 
 ### 3. Test the Pipeline
 
 1. Push your changes to GitHub:
+
    ```bash
    git add .
    git commit -m "feat: add CI/CD with SonarCloud integration"
@@ -159,16 +175,19 @@ Replace placeholders in `README.md`:
 ## Local Testing
 
 ### Run Tests with Coverage
+
 ```bash
 npm run test -- --coverage
 ```
 
 ### View Coverage Report
+
 ```bash
 open coverage/index.html
 ```
 
 ### Run All CI Checks Locally
+
 ```bash
 # Lint
 npm run lint
@@ -228,13 +247,17 @@ npm run build-storybook
 ## Workflow Features
 
 ### Branch Protection
+
 Can be configured to require:
+
 - CI workflow to pass
 - SonarCloud quality gate to pass
 - Code review approval
 
 ### Automatic Checks on PR
+
 Every pull request automatically:
+
 - Runs all tests
 - Checks code quality
 - Generates coverage report
@@ -242,7 +265,9 @@ Every pull request automatically:
 - Shows status in PR checks
 
 ### Build Artifacts
+
 Successful builds upload:
+
 - Compiled package (`packages/design-system/dist`)
 - Built Storybook (`storybook-static`)
 - Retention: 7 days
@@ -252,6 +277,7 @@ Successful builds upload:
 ### Workflow Fails
 
 **Check:**
+
 1. GitHub Actions logs for detailed errors
 2. Ensure all dependencies are in package-lock.json
 3. Run checks locally to reproduce issues
@@ -259,6 +285,7 @@ Successful builds upload:
 ### SonarCloud Issues
 
 **Common Problems:**
+
 1. Missing SONAR_TOKEN secret
 2. Incorrect project/organization keys
 3. Coverage file not found (ensure tests run with --coverage)
@@ -267,6 +294,7 @@ Successful builds upload:
 ### Coverage Not Generated
 
 **Solutions:**
+
 1. Ensure `@vitest/coverage-v8` is installed
 2. Check vitest.config.ts has coverage configuration
 3. Run `npm run test -- --coverage` manually to verify
@@ -274,12 +302,14 @@ Successful builds upload:
 ## Files Created/Modified
 
 ### New Files:
+
 - `.github/workflows/ci.yml` - GitHub Actions workflow
 - `sonar-project.properties` - SonarCloud configuration
 - `.github/SETUP_CI.md` - Detailed setup guide
 - `CI_SETUP_SUMMARY.md` - This summary
 
 ### Modified Files:
+
 - `packages/design-system/vitest.config.ts` - Added coverage config
 - `packages/design-system/package.json` - Added @vitest/coverage-v8
 - `.gitignore` - Added coverage and SonarCloud directories
@@ -298,23 +328,30 @@ Successful builds upload:
 ## Maintenance
 
 ### Adding New Tests
+
 Tests are automatically included when you:
+
 1. Create `*.spec.tsx` or `*.test.tsx` files
 2. Run the workflow (tests run automatically)
 
 ### Updating Node.js Versions
+
 Edit `.github/workflows/ci.yml`:
+
 ```yaml
 strategy:
   matrix:
-    node-version: [18.x, 20.x, 22.x]  # Add/remove versions
+    node-version: [18.x, 20.x, 22.x] # Add/remove versions
 ```
 
 ### Modifying Coverage Requirements
+
 Edit `sonar-project.properties` to adjust thresholds or exclusions.
 
 ### Updating Quality Gate
+
 Configure in SonarCloud dashboard:
+
 1. Quality Gates section
 2. Modify conditions
 3. Changes apply immediately
@@ -329,6 +366,7 @@ Configure in SonarCloud dashboard:
 ## Support
 
 For issues or questions:
+
 1. Check [Setup Guide](.github/SETUP_CI.md) troubleshooting section
 2. Review GitHub Actions workflow logs
 3. Check SonarCloud analysis results

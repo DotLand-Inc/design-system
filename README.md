@@ -139,6 +139,7 @@ function App() {
 ```
 
 The `DotlandThemeProvider` automatically applies:
+
 - The Dotland custom theme
 - MUI's CssBaseline for consistent baseline styles
 - Global theme configuration to all child components
@@ -237,6 +238,7 @@ open coverage/index.html
 ### Code Quality Metrics
 
 SonarCloud analyzes:
+
 - Code coverage
 - Code smells
 - Bugs and vulnerabilities

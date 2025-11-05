@@ -15,6 +15,7 @@ This guide will help you set up the continuous integration and code quality tool
 GitHub Actions is automatically enabled for your repository. The workflow file is located at `.github/workflows/ci.yml`.
 
 The workflow will run automatically on:
+
 - Every push to any branch
 - Every pull request to any branch
 
@@ -52,11 +53,11 @@ The workflow will run automatically on:
 2. Navigate to "Settings" → "Secrets and variables" → "Actions"
 3. Click "New repository secret" and add the following secrets:
 
-   | Secret Name | Description | Where to Find |
-   |-------------|-------------|---------------|
-   | `SONAR_TOKEN` | SonarCloud authentication token | SonarCloud → My Account → Security → Generate Token |
-   | `SONAR_ORGANIZATION` | Your SonarCloud organization key | SonarCloud → Organization Settings → Key |
-   | `SONAR_PROJECT_KEY` | Your SonarCloud project key | SonarCloud → Project Settings → Project Key |
+   | Secret Name          | Description                      | Where to Find                                       |
+   | -------------------- | -------------------------------- | --------------------------------------------------- |
+   | `SONAR_TOKEN`        | SonarCloud authentication token  | SonarCloud → My Account → Security → Generate Token |
+   | `SONAR_ORGANIZATION` | Your SonarCloud organization key | SonarCloud → Organization Settings → Key            |
+   | `SONAR_PROJECT_KEY`  | Your SonarCloud project key      | SonarCloud → Project Settings → Project Key         |
 
 **Important**: The `GITHUB_TOKEN` is automatically provided by GitHub Actions and doesn't need to be added manually.
 
@@ -68,6 +69,7 @@ The workflow will run automatically on:
    - Replace `YOUR_PROJECT_KEY` with your SonarCloud project key
 
 Example:
+
 ```markdown
 [![CI](https://github.com/dotland-org/design-system/actions/workflows/ci.yml/badge.svg)](https://github.com/dotland-org/design-system/actions/workflows/ci.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dotland-org_design-system&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=dotland-org_design-system)
@@ -131,31 +133,39 @@ SonarCloud comes with a default quality gate. To customize it:
 ### GitHub Actions Fails
 
 **Issue**: Workflow fails on dependencies installation
+
 - **Solution**: Make sure `package-lock.json` is committed
 
 **Issue**: Tests fail
+
 - **Solution**: Run tests locally first with `npm run test`
 
 **Issue**: Build fails
+
 - **Solution**: Run build locally with `npm run build` and fix any errors
 
 ### SonarCloud Issues
 
 **Issue**: SonarCloud scan fails with authentication error
+
 - **Solution**: Verify `SONAR_TOKEN` secret is correctly set in GitHub
 
 **Issue**: Quality gate fails
+
 - **Solution**: Check the SonarCloud dashboard for specific issues (code coverage, bugs, vulnerabilities)
 
 **Issue**: Coverage report not found
+
 - **Solution**: Ensure tests run with coverage: `npm run test -- --coverage`
 
 **Issue**: Wrong project analyzed
+
 - **Solution**: Verify `SONAR_PROJECT_KEY` matches your SonarCloud project
 
 ### Badge Not Showing
 
 **Issue**: Badge shows "unknown" or error
+
 - **Solution**:
   1. Verify project key is correct in badge URL
   2. Ensure SonarCloud analysis has completed at least once
@@ -170,7 +180,7 @@ Edit `.github/workflows/ci.yml` and update the matrix:
 ```yaml
 strategy:
   matrix:
-    node-version: [18.x, 20.x, 22.x]  # Add new versions here
+    node-version: [18.x, 20.x, 22.x] # Add new versions here
 ```
 
 ### Adjusting Coverage Requirements
@@ -184,6 +194,7 @@ sonar.coverage.exclusions=**/*.stories.tsx,**/*.spec.tsx
 ### Modifying Quality Gate
 
 In SonarCloud dashboard:
+
 1. Go to Quality Gates
 2. Select your quality gate
 3. Add/modify conditions
@@ -199,6 +210,7 @@ In SonarCloud dashboard:
 ## Support
 
 If you encounter issues:
+
 1. Check the GitHub Actions logs for detailed error messages
 2. Review SonarCloud analysis results
 3. Consult the troubleshooting section above

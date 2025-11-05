@@ -25,7 +25,7 @@ describe('Switch', () => {
 
   it('should render with inputProps', () => {
     const { container } = render(<Switch inputProps={{ 'aria-label': 'Test Switch' }} />);
-    const input = container.querySelector('.MuiSwitch-input') as HTMLInputElement;
+    const input = container.querySelector('.MuiSwitch-input');
     expect(input).toBeInTheDocument();
   });
 
