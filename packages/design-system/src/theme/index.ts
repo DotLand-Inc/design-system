@@ -59,3 +59,5 @@ export const dotlandThemeOptions: ThemeOptions = {
 };
 
 export const dotlandTheme = createTheme(dotlandThemeOptions);
+
+export { DotlandThemeProvider } from './ThemeProvider';

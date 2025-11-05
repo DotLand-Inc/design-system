@@ -1,5 +1,5 @@
 // Export theme
-export { dotlandTheme, dotlandThemeOptions } from './theme';
+export { dotlandTheme, dotlandThemeOptions, DotlandThemeProvider } from './theme';
 
 // Export input components
 export {

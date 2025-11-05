@@ -114,7 +114,32 @@ Components are organized by category:
 
 ## Usage Example
 
-The design system re-exports MUI components. You need to wrap your app with the Dotland theme:
+### Using the Global Theme Provider (Recommended)
+
+The design system includes a `DotlandThemeProvider` that applies the theme globally to all components:
+
+```tsx
+import { Button, DotlandThemeProvider } from '@dotland/design-system';
+
+function App() {
+  return (
+    <DotlandThemeProvider>
+      <Button color="primary" variant="contained">
+        Click me
+      </Button>
+    </DotlandThemeProvider>
+  );
+}
+```
+
+The `DotlandThemeProvider` automatically applies:
+- The Dotland custom theme
+- MUI's CssBaseline for consistent baseline styles
+- Global theme configuration to all child components
+
+### Alternative: Using MUI ThemeProvider Directly
+
+You can also use MUI's ThemeProvider directly if you need more control:
 
 ```tsx
 import { Button, dotlandTheme } from '@dotland/design-system';
