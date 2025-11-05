@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
+import { Button } from '.';
 
 const meta = {
-  title: 'Inputs/Button',
+  title: 'Design System/Inputs/Button',
   component: Button,
   parameters: {
     layout: 'centered',

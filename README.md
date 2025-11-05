@@ -76,12 +76,13 @@ The design system package is located at `packages/design-system` and is built wi
 
 ### Design System Philosophy
 
-This design system wraps Material-UI components with a custom Dotland theme, providing:
+This design system re-exports Material-UI components with a custom Dotland theme, providing:
 
-- Consistent branding across all components
-- Type-safe component APIs
-- Easy theme customization
-- Full MUI feature compatibility
+- **Simple re-exports**: Direct access to all MUI components and their types
+- **Consistent branding**: Apply the Dotland theme via ThemeProvider
+- **Type-safe APIs**: Full TypeScript support from MUI
+- **Easy theme customization**: Modify the Dotland theme to fit your needs
+- **Full MUI compatibility**: All MUI features and props available
 
 #### Building the Library
 
@@ -109,9 +110,11 @@ Components are organized by category:
 
 ### Inputs
 
-- **Button** - MUI Button with Dotland theme (variants: contained, outlined, text)
+- **Button** - Re-exported MUI Button component
 
 ## Usage Example
+
+The design system re-exports MUI components. You need to wrap your app with the Dotland theme:
 
 ```tsx
 import { Button, dotlandTheme } from '@dotland/design-system';
@@ -120,7 +123,7 @@ import { ThemeProvider } from '@mui/material/styles';
 function App() {
   return (
     <ThemeProvider theme={dotlandTheme}>
-      <Button color="primary" variant="contained" size="medium">
+      <Button color="primary" variant="contained">
         Click me
       </Button>
     </ThemeProvider>
@@ -128,19 +131,7 @@ function App() {
 }
 ```
 
-**Note**: The Button component includes the ThemeProvider internally, so you can use it without wrapping in ThemeProvider:
-
-```tsx
-import { Button } from '@dotland/design-system';
-
-function App() {
-  return (
-    <Button color="primary" variant="contained">
-      Click me
-    </Button>
-  );
-}
-```
+All MUI component props and features are available directly.
 
 ## Theme Customization
 
