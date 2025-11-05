@@ -61,8 +61,6 @@ jobs:
     name: Code Quality Analysis
     runs-on: ubuntu-latest
     needs: build-and-test
-    # Only run if SonarCloud is configured (SONAR_TOKEN exists)
-    if: ${{ secrets.SONAR_TOKEN != '' }}
 
     steps:
       - name: Checkout repository
