@@ -9,19 +9,25 @@ The design system is automatically published to NPM when changes are pushed to t
 ## Configuration Files
 
 ### 1. **lerna.json**
+
 Configured for independent versioning with conventional commits:
+
 - `version: "independent"` - Each package maintains its own version
 - `conventionalCommits: true` - Automatically determines version bumps from commit messages
 - `createRelease: "github"` - Creates GitHub releases with changelogs
 - Ignores test files, stories, and documentation changes
 
 ### 2. **package.json (root)**
+
 Added scripts for versioning and publishing:
+
 - `npm run version` - Bumps package versions based on conventional commits
 - `npm run publish` - Publishes packages to NPM registry
 
 ### 3. **packages/design-system/package.json**
+
 Configured with:
+
 - Publishing metadata (description, keywords, author, license)
 - Repository information
 - `publishConfig` for public access
@@ -29,10 +35,13 @@ Configured with:
 - `files` field to specify what gets published
 
 ### 4. **.npmrc**
+
 Configures NPM authentication using the `NPM_TOKEN` environment variable.
 
 ### 5. **.npmignore**
+
 Excludes development files from the published package:
+
 - Source files (TypeScript, configs)
 - Test files
 - Storybook files
@@ -43,19 +52,25 @@ Excludes development files from the published package:
 The CI pipeline (`.github/workflows/ci.yml`) includes three jobs:
 
 ### 1. **build-and-test**
+
 Runs on all pushes and PRs:
+
 - Lints code
 - Runs tests
 - Builds packages
 - Builds Storybook
 
 ### 2. **code-quality**
+
 Runs after build-and-test:
+
 - Generates code coverage
 - Runs SonarCloud analysis
 
 ### 3. **publish**
+
 Runs only on pushes to `main`:
+
 - Requires both previous jobs to pass
 - Versions packages using Lerna
 - Publishes to NPM registry
@@ -97,16 +112,19 @@ You need to configure these secrets in your GitHub repository:
 Lerna uses conventional commits to determine version bumps:
 
 - **Patch** (0.0.X): `fix:` commits
+
   ```
   fix: resolve button styling issue
   ```
 
 - **Minor** (0.X.0): `feat:` commits
+
   ```
   feat: add new TextField component
   ```
 
 - **Major** (X.0.0): Breaking changes
+
   ```
   feat!: redesign Button API
 
@@ -130,6 +148,7 @@ Lerna uses conventional commits to determine version bumps:
 ### What Gets Published
 
 Only the `dist/` folder and essential files are published:
+
 - `dist/` - Compiled JavaScript and TypeScript definitions
 - `README.md` - Package documentation
 - `LICENSE` - License file
@@ -165,6 +184,7 @@ Follow the [Conventional Commits](https://www.conventionalcommits.org/) specific
 ```
 
 ### Common types:
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -191,21 +211,25 @@ BREAKING CHANGE: ThemeProvider now requires theme prop instead of using default 
 ## Troubleshooting
 
 ### Publishing fails with authentication error
+
 - Verify `NPM_TOKEN` is correctly set in GitHub secrets
 - Ensure the token has "Automation" permissions
 - Check token hasn't expired
 
 ### Version not bumping
+
 - Ensure commits follow conventional commit format
 - Check that changes aren't in ignored files (tests, docs)
 - Verify Lerna configuration in `lerna.json`
 
 ### GitHub release creation fails
+
 - Verify `GH_TOKEN` has correct permissions
 - Ensure token has `repo` and `write:packages` scopes
 - Check token hasn't been revoked
 
 ### Package not appearing on NPM
+
 - Verify package name `@dotland/design-system` is available
 - Check `publishConfig.access` is set to "public"
 - Ensure you have permissions to publish under `@dotland` scope
