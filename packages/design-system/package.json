@@ -1,6 +1,7 @@
 {
   "name": "@dotland/design-system",
   "version": "0.0.0",
+  "description": "Dotland Design System - A comprehensive React component library built on Material-UI",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -13,7 +14,9 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "dev": "vite",
@@ -23,7 +26,32 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "prepublishOnly": "npm run lint && npm run test && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dotland/design-system.git",
+    "directory": "packages/design-system"
+  },
+  "keywords": [
+    "design-system",
+    "react",
+    "components",
+    "material-ui",
+    "mui",
+    "typescript",
+    "ui-library"
+  ],
+  "author": "Dotland",
+  "license": "MIT",
+  "homepage": "https://github.com/Dotland/design-system#readme",
+  "bugs": {
+    "url": "https://github.com/Dotland/design-system/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
     "@emotion/react": "^11.14.0",

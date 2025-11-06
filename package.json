@@ -17,7 +17,9 @@
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,yml,yaml}\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prepare": "husky"
+    "prepare": "husky",
+    "version": "lerna version --conventional-commits --create-release github --yes",
+    "publish": "lerna publish from-package --yes"
   },
   "keywords": [],
   "author": "",
