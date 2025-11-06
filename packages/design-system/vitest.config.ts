@@ -11,6 +11,7 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'lcov', 'html'],
       reportsDirectory: '../../coverage',
+      include: ['src/**/*.{ts,tsx}'],
       exclude: [
         'node_modules/',
         'src/test/',
@@ -21,7 +22,11 @@ export default defineConfig({
         '**/*.test.ts',
         '**/*.config.ts',
         '**/index.ts',
+        'src/main.tsx',
+        'src/App.tsx',
         'dist/',
+        // Exclude MUI re-export wrappers (no custom logic to test)
+        'src/inputs/**/*.tsx',
       ],
     },
   },
